@@ -1,6 +1,7 @@
 import { IconType } from "react-icons";
 import { GoHome } from "react-icons/go";
 import { LuUserRoundPlus } from "react-icons/lu";
+import { RiUserSettingsLine } from "react-icons/ri";
 interface EnumOptions {
     name : string,
     icons : IconType,
@@ -20,9 +21,14 @@ export function DasboardConfig() : Config {
                 path : "/admin"
             },
             {
-                name: "Mentor Control",
+                name: "Mentor Creator",
                 icons: LuUserRoundPlus,
-                path : "/admin"
+                path : "/admin/mentor/create"
+            },
+            {
+                name: "Mentor Control",
+                icons: RiUserSettingsLine,
+                path : "/admin/mentor"
             }
         ],
         mentor : null

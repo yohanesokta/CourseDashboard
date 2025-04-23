@@ -1,3 +1,4 @@
+import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useLoaderData } from "react-router";
 
@@ -33,6 +34,38 @@ export async function queryAuthAccepter  (): Promise<{ token:  string |AuthToken
         }
     }
 }
+
+
+export async function queryAuthAccepterLoader(role : "admin" | "mentor") : Promise<{ data: any }> {
+    const authToken = localStorage.getItem('authToken');
+    if (authToken) {
+        try {
+            const userdata  = await axios("http://localhost:3000/default/user",{
+                method : "GET",
+                headers: {
+                    Authorization : `Bearer ${authToken}`,
+                }
+            }) 
+            if (userdata.data.role != role) {
+                window.location.href ="/error"
+            }
+            return {
+                data : userdata.data
+            }
+        } catch{
+            window.location.href ="/error"
+            return {
+                data : []
+            }
+        }
+    } else {
+        window.location.href ="/error"
+        return {
+            data : []
+        }
+    }
+}
+
 
 export function AuthComponent() {
     let data : {token : string | AuthTokenDecoded} = useLoaderData();
