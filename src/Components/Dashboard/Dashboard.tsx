@@ -1,18 +1,21 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { DasboardConfig } from "./config";
 import { LuLayoutList } from "react-icons/lu";
+import { AuthTokenDecoded } from "../../utils/Auth";
+import { useLoaderData } from "react-router";
 export interface DashboardProps {
     children: React.ReactNode;
     role : "admin" | "mentor";
 }   
 
-export const Dashboard = ( {children , role} : DashboardProps) => {
+export const Dashboard = ( {children , role } : DashboardProps) => {
     // const [isOpen, setIsOpen] = useState(false);
     const [toggle, setToggle] = useState(localStorage.getItem("toggle") == "true" ? false : true);
     function handleToggle() {
         localStorage.setItem("toggle", String(toggle));
         setToggle(!toggle);
     }
+    const userdata : {data : AuthTokenDecoded} = useLoaderData()
   return (
     <>
         <div className="flex h-screen ">
@@ -23,6 +26,7 @@ export const Dashboard = ( {children , role} : DashboardProps) => {
                 <div className={(toggle ? "p-2 font-normal" : "") + ""}>
                     <p className={(toggle) ? "text-sm text-gray-500 text-center" : "text-center w-full mx-auto text-gray-500"}>Menu</p>
                     <div className="my-4">
+
                     {(DasboardConfig()[role] || []).map((item, index) => {
                         let focus;
                         if (window.location.pathname == item.path) {
@@ -41,6 +45,13 @@ export const Dashboard = ( {children , role} : DashboardProps) => {
                     <div className="h-full px-5 items-center flex">
                         <button onClick={handleToggle} className="cursor-pointer flex items-center justify-center w-14 h-12 border-2 rounded-lg bg-white text-neutral-500 border-neutral-300 text-2xl"><LuLayoutList/></button>
                     </div>
+                    <button className="flex items-center justify-center px-4 ">
+                        <div className="w-12 h-12 rounded-full flex items-center relative justify-center bg-gray-700 font-bold text-xl">
+                            {userdata.data.username.charAt(0).toUpperCase()}
+                            {(userdata.data.profile_picture_url) ? <img className="absolute top-0 left-0 w-12 h-12 rounded-full" src={userdata.data.profile_picture_url} alt="" /> : ""}
+                        </div>
+                        <div className="font-semibold text-sm text-neutral-700 px-2"><span>{userdata.data.username.split(" ")[0]}</span></div>
+                    </button>
                 </nav>
                 <div className="flex-1 overflow-y-auto">
                     {children}

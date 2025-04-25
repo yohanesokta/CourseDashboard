@@ -3,7 +3,6 @@ import { Dashboard } from "../Components/Dashboard/Dashboard"
 
 export const AdminHome = () => {
   const data : any = useLoaderData()
-  console.log(data)
   return (
     <Dashboard role="admin">
         <div className="flex flex-col items-center justify-center text-black">

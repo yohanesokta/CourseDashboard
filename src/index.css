@@ -5,7 +5,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(0, 0, 0, 0.87);
   background-color: #F9FAFB;
 
   font-synthesis: none;
@@ -13,7 +13,46 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+button {
+  cursor: pointer;
+}
 .animation-05s{
   transition: 0.25s ease-in-out;
 }
+td , th{
+  text-align: left;
+  padding: 10px;
+}
+.blur-bg{
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+}
+
+.awesome-table th, .awesome-table td {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
 @import "tailwindcss";
+.head-animate{
+  animation: head-animate 1s infinite;
+}
+.loading-animate {
+  animation: loading-animate 1s infinite;
+}
+
+@keyframes loading-animate {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  20%{
+    opacity: 1
+  }
+  50% {
+    width: 100%;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}

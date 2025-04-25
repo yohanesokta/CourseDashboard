@@ -6,14 +6,15 @@ export interface AuthToken {
     token: string;
 }
 
-interface AuthTokenDecoded {
+export interface AuthTokenDecoded {
+    id : string;
     createAt: string;
     iat: number
     role: string;
     token_create: number
     updateAt: string;
     user_email: string
-    user_picture: string
+    profile_picture_url: string
     username: string
 }
 

@@ -21,14 +21,9 @@ export function DasboardConfig() : Config {
                 path : "/admin"
             },
             {
-                name: "Mentor Creator",
-                icons: LuUserRoundPlus,
-                path : "/admin/mentor/create"
-            },
-            {
-                name: "Mentor Control",
+                name: "User Configurator",
                 icons: RiUserSettingsLine,
-                path : "/admin/mentor"
+                path : "/admin/user"
             }
         ],
         mentor : null
